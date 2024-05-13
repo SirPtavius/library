@@ -3,8 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
-    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Library</title>
   </head>
-  <body></body>
+  <body>
+    <div class="header">
+      <div class="appTitle">
+        <h1 class="title">Library</h1>
+      </div>
+
+      <button class="signIn">Sign In</button>
+    </div>
+
+    <div class="center">
+      <button id="newBook">Add New Book</button>
+    </div>
+
+    <div class="popup">
+      <button class="cancel">&times;</button>
+      <div class="form">
+        <h2>Insert New Book</h2>
+        <div class="formElement">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" />
+        </div>
+        <div class="formElement">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" />
+        </div>
+        <div class="formElement">
+          <label for="pages">Pages</label>
+          <input type="number" name="pages" id="pages" />
+        </div>
+        <div class="formElement">
+          <input type="checkbox" id="read" />
+          <label for="read"> Read</label>
+        </div>
+        <div class="formElement">
+          <button class="submit">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="library">
+      <div class="card">
+        <h2>Lord Of The rings</h2>
+        <p>J. R. R. Tolkien</p>
+        <p>340</p>
+        <div class="cardButton">
+          <img src="icon/open-book.png" alt="Icon" id="bookImg" />
+          <img src="icon/bin.png" alt="Icon" />
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
