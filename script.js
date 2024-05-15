@@ -2,7 +2,7 @@
 const addNewBookbtn = document.querySelector("#newBook");
 const popup = document.querySelector(".popup");
 const close = document.querySelector(".close");
-const myLibrary = [];
+let myLibrary = [];
 
 // Functions
 function popUp() {
@@ -14,7 +14,17 @@ function closeBtn() {
 }
 
 function addBookToLibrary() {
+  //check required
+  if (
+    title.value.trim() === "" ||
+    author.value.trim() === "" ||
+    pages.value.trim() === ""
+  ) {
+    alert("Please fill in all required fields.");
+    return;
+  }
   const newBook = {
+    id: Date.now(), //Card Index
     title: title.value,
     author: author.value,
     pages: pages.value,
@@ -60,6 +70,9 @@ function addNewCard(newBook) {
   deleteImgElement.classList.add("deleteCard");
   deleteImgElement.alt = "Icona eliminazione";
 
+  // Add index to cards
+  newCardDiv.setAttribute("data-id", newBook.id);
+
   cardButtonDiv.appendChild(bookImgElement);
   cardButtonDiv.appendChild(deleteImgElement);
 
@@ -71,35 +84,35 @@ function addNewCard(newBook) {
   const libraryDiv = document.querySelector(".library");
   libraryDiv.appendChild(newCardDiv);
 
+  // Changes book icon and library.read
+  bookImgElement.addEventListener("click", function () {
+    const cardId = newCardDiv.getAttribute("data-id");
+    const cardIndex = myLibrary.findIndex(
+      (book) => book.id === parseInt(cardId)
+    );
+    if (cardIndex !== -1) {
+      myLibrary[cardIndex].read = !myLibrary[cardIndex].read; // change .read
+      bookImgElement.src = myLibrary[cardIndex].read
+        ? "icon/close-book.png"
+        : "icon/open-book.png"; // change icon depending on .read
+    }
+  });
+
   const deleteButtons = document.querySelectorAll(".deleteCard");
   deleteButtons.forEach(function (deleteBtn) {
     deleteBtn.addEventListener("click", function (event) {
-      event.target.parentNode.parentNode.remove();
+      const cardId = event.target.closest(".card").getAttribute("data-id");
+      deleteCard(cardId);
+      event.target.closest(".card").remove();
     });
   });
+}
 
-  const bookImgs = document.querySelectorAll(".bookImg");
-  bookImgs.forEach(function (bookImg) {
-    bookImg.addEventListener("click", function () {
-      if (bookImg.classList.contains("active")) {
-        bookImg.src = "icon/open-book.png";
-        bookImg.classList.remove("active");
-      } else {
-        bookImg.classList.add("active");
-        bookImg.src = "icon/close-book.png";
-      }
-    });
-  });
+function deleteCard(id) {
+  myLibrary = myLibrary.filter((book) => book.id !== parseInt(id));
 }
 
 // Event Listeners
 addNewBookbtn.addEventListener("click", popUp);
 close.addEventListener("click", closeBtn);
 document.querySelector(".submit").addEventListener("click", addBookToLibrary);
-
-const deleteButtons = document.querySelectorAll(".deleteCard");
-deleteButtons.forEach(function (deleteBtn) {
-  deleteBtn.addEventListener("click", function (event) {
-    event.target.parentNode.parentNode.remove();
-  });
-});

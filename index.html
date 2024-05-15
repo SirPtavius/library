@@ -22,19 +22,19 @@
 
     <div class="popup">
       <button class="close">&times;</button>
-      <div class="form">
+      <form class="form">
         <h2>Insert New Book</h2>
         <div class="formElement">
           <label for="title">Title</label>
-          <input type="text" name="title" id="title" />
+          <input type="text" name="title" id="title" required />
         </div>
         <div class="formElement">
           <label for="author">Author</label>
-          <input type="text" name="author" id="author" />
+          <input type="text" name="author" id="author" required />
         </div>
         <div class="formElement">
           <label for="pages">Pages</label>
-          <input type="number" name="pages" id="pages" />
+          <input type="number" name="pages" id="pages" required />
         </div>
         <div class="formElement">
           <input type="checkbox" id="read" />
@@ -43,9 +43,10 @@
         <div class="formElement">
           <button class="submit">Submit</button>
         </div>
-      </div>
+      </form>
     </div>
     <div class="library">
+      <!--
       <div class="card">
         <h2>Lord Of The rings</h2>
         <p>J. R. R. Tolkien</p>
@@ -55,7 +56,9 @@
           <img src="icon/bin.png" alt="Icon" class="deleteCard" />
         </div>
       </div>
+      !-->
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
